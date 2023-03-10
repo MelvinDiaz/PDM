@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.052"
+        app:layout_constraintVertical_bias="0.027"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -26,67 +26,92 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Melvin Díaz"
+        android:textColor="@color/nord0"
         android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.042"
+        android:layout_margin="8dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Ingeniero en informatica"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="254dp"
+        android:layout_margin="8dp"
+        />
 
     <EditText
         android:id="@+id/myEmail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Email"
+        android:textColor="@color/nord0"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0.041"
+        android:layout_margin="8dp"
+        />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Write a message"
+        android:textColor="@color/nord0"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.183"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myEmail"
-        app:layout_constraintVertical_bias="0.028"
 
+        app:layout_constraintVertical_bias="0.028"
+        android:layout_margin="8dp"
         />
 
     <EditText
         android:id="@+id/myMessage"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:textColor="@color/nord0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.118"
-        android:background=""
+        android:layout_margin="8dp"
         />
 
     <Button
         android:id="@+id/mySendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/nord8"
         android:text="Send"
+        android:textColor="@color/nord0"
+        android:textColorLink="@color/nord9"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myMessage"
-        app:layout_constraintVertical_bias="0.4"
-        android:textSize="15dp"
+        app:layout_constraintVertical_bias="0.0"
+
         />
 
 
