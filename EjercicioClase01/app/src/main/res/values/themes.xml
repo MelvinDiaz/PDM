@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/nord9</item>
         <item name="colorPrimaryVariant">@color/nord12</item>
         <item name="colorOnPrimary">@color/nord6</item>
-
+        <item name="android:statusBarColor">@color/nord10</item>
         <!-- Secondary brand colors -->
         <item name="colorSecondary">@color/nord14</item>
         <item name="colorSecondaryVariant">@color/nord15</item>
