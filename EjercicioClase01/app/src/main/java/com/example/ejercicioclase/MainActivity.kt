@@ -19,14 +19,10 @@ class MainActivity : AppCompatActivity() {
             val message = findViewById<EditText>(R.id.myMessage)
             //Show second activity
             btn.setOnClickListener {
-
                 val intent = Intent(this, SecondActivity::class.java).apply {
                     putExtra("message", message.text.toString())
                 }
-1
                 startActivity(intent)
             }
-
-
         }
     }

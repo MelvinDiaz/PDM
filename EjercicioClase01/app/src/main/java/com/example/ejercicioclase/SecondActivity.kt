@@ -8,16 +8,17 @@ import android.widget.Button
 import android.widget.TextView
 
 class SecondActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
+        findMessageTextView()
+    }
+    fun findMessageTextView() {
         val messageTextView = findViewById<TextView>(R.id.messageTextView)
         val message = intent.getStringExtra("message")
         val existingText = messageTextView.text.toString()
-        val newText = existingText + " " + message
+        val newText = "$existingText $message"
         messageTextView.text = newText
-
     }
 }
