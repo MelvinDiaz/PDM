@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Clase03</string>
+    <string name="text_result">Team A \n %d VS \n Team B %d</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="team_b">Team B</string>
+    <string name="_0">0</string>
+    <string name="add_one_btn">+1</string>
+    <string name="team_a">Team A</string>
 </resources>
