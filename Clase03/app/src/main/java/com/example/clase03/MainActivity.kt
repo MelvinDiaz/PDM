@@ -25,15 +25,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.title = "Ejemplo de titulo"
-        val actionBar = supportActionBar
-
-        val color = ContextCompat.getColor(this, R.color.primary_color)
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         bind()
-        //Para ver si hay datos guardados
+        addEventListener()
+
         if (savedInstanceState != null) {
             displayTeamA.text = savedInstanceState?.getInt(TEAM_A_SCORE).toString()
             displayTeamB.text = savedInstanceState?.getInt(TEAM_B_SCORE).toString()
@@ -41,8 +38,6 @@ class MainActivity : AppCompatActivity() {
             displayTeamA.text = scoreTeamA.toString()
             displayTeamB.text = scoreTeamB.toString()
         }
-
-        addEventListener()
 
     }
 
@@ -66,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         gameOverButton.setOnClickListener {
-            var intent = Intent(MainActivity@ this, ScoreActivity::class.java)
+            val intent = Intent(MainActivity@ this, ScoreActivity::class.java)
             intent.putExtra(TEAM_A_SCORE, scoreTeamA)
             intent.putExtra(TEAM_B_SCORE, scoreTeamB)
             startActivity(intent)
