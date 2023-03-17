@@ -15,4 +15,13 @@ class MainActivity : AppCompatActivity() {
 
         fragmentManager.beginTransaction().add(fragmentContainerView.id, MainFragment()).commit()
     }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val fragment = supportFragmentManager.findFragmentById(R.id.main_fragment_container)
+        if (fragment != null) {
+            supportFragmentManager.putFragment(outState, "mainFragment", fragment)
+        }
+    }
 }
