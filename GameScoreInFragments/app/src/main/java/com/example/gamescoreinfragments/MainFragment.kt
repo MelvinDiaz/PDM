@@ -41,6 +41,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         displayTeamA = view.findViewById(R.id.text_view_score_team_a)
         displayTeamB = view.findViewById(R.id.text_view_score_team_b)
         val buttonTeamA = view.findViewById<TextView>(R.id.button_team_a)

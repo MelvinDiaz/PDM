@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentContainerView = findViewById<FrameLayout>(R.id.main_fragment_container)
 
-        fragmentManager.beginTransaction().add(fragmentContainerView.id, MainFragment()).commit()
+        fragmentManager.beginTransaction().replace(fragmentContainerView.id, MainFragment()).commit()
     }
 
 
