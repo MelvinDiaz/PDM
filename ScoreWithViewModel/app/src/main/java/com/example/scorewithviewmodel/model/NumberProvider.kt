@@ -3,14 +3,13 @@ package com.example.scorewithviewmodel.model
 class NumberProvider {
 
     companion object {
-        val _numberA = 0
-        val _numberB = 0
 
-        fun addNumberA(): NumberModelA {
-            return NumberModelA(_numberA + 1)
+
+        fun addNumberA(number: Int): NumberModelA {
+            return NumberModelA(number + 1)
         }
-        fun addNumberB(): NumberModelB {
-            return NumberModelB(_numberB + 1)
+        fun addNumberB(number: Int): NumberModelB {
+            return NumberModelB(number + 1)
         }
 
     }
