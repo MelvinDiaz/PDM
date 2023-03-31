@@ -13,6 +13,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        numberViewModel.numberModelA.observe(this) {
+            binding.textViewScoreTeamA.text = it.numberA.toString()
+        }
+        numberViewModel.numberModelB.observe(this) {
+            binding.textViewScoreTeamB.text = it.numberB.toString()
+        }
+        binding.actionAddTeamA.setOnClickListener {
+            numberViewModel.addNumberA()
+        }
+        binding.actionAddTeamB.setOnClickListener {
+            numberViewModel.addNumberB()
+        }
     }
 }
