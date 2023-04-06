@@ -8,4 +8,6 @@ interface APIservice {
     //Aqui serializamos la respuesta de la API
     @GET
     suspend fun getListPokemon(@Url url:String): Response<PokemonResponse>
+    @GET()
+    suspend fun getPokemon(@Url url:String): Response<Pokemon>
 }

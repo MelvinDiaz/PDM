@@ -11,43 +11,73 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: PokemonAdapter
     private val pokemonList = mutableListOf<String>()
-
+    private val baseURL = "https://pokeapi.co/api/v2/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initRecyclerView()
-        showPokemonList("https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0")
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
-
     private fun initRecyclerView() {
-        adapter = PokemonAdapter(pokemonList)
+        adapter = PokemonAdapter(pokemonList) { pokemonName ->
+            //Clear the recycler view
+            adapter.updateList(emptyList())
+
+            //Show info about the clicked Pokemon
+            showPokemonInfo(pokemonName)
+        }
         binding.pokemonList.layoutManager = LinearLayoutManager(this)
         binding.pokemonList.adapter = adapter
-        showPokemonList("")
+        showPokemonList("$baseURL/pokemon?limit=1000&offset=0")
     }
 
     private fun getRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        return Retrofit.Builder().baseUrl("https://pokeapi.co/api/v2/")
+            .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     private fun showPokemonList(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(APIservice::class.java)
-                .getListPokemon(query)
+            val call = getRetrofit().create(APIservice::class.java).getListPokemon(query)
             val pokemon = call.body()
             runOnUiThread {
                 if (call.isSuccessful) {
                     //Show recycler
                     val pokemon = call.body()?.results?.map { it.name } ?: emptyList()
                     adapter.updateList(pokemon)
+                } else {
+                    //Show error
+                    showError()
+                }
+            }
+        }
+    }
+    override fun onBackPressed() {
+        // If the adapter is not empty, clear it and show the initial list of Pokemon
+        if (adapter.itemCount > 0) {
+            adapter.updateList(emptyList())
+            showPokemonList("$baseURL/pokemon?limit=1000&offset=0")
+        } else {
+            // If the adapter is already empty, call the default back button behavior
+            super.onBackPressed()
+        }
+    }
+
+    private fun showPokemonInfo(pokemonName: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val call = getRetrofit().create(APIservice::class.java).getPokemon(" $baseURL/pokemon/$pokemonName")
+            val pokemon = call.body()
+            runOnUiThread {
+                if (call.isSuccessful) {
+                    //Show pokemon info
+                    val info = "Name: ${pokemon?.name}\nHeight: ${pokemon?.height}\n"
+                    Toast.makeText(this@MainActivity, info, Toast.LENGTH_SHORT).show()
                 } else {
                     //Show error
                     showError()
