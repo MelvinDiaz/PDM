@@ -23,7 +23,7 @@ data class Pokemon(
     @SerializedName("Sprites") val sprites: Sprites,
     @SerializedName("types") val types: List<pokemonTypes>,
 
-)
+    )
 
 data class Sprites(
     @SerializedName("front_default") val frontDefault: String,

@@ -2,6 +2,8 @@ package com.diaz.pokemonapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diaz.pokemonapp.databinding.ActivityMainBinding
@@ -15,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: PokemonAdapter
+    private lateinit var detailsAdapter: PokemonSecondAdapter
     private val pokemonList = mutableListOf<String>()
     private val baseURL = "https://pokeapi.co/api/v2/"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,16 +25,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initRecyclerView()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
+
     private fun initRecyclerView() {
         adapter = PokemonAdapter(pokemonList) { pokemonName ->
-            //Clear the recycler view
-            adapter.updateList(emptyList())
-
-            //Show info about the clicked Pokemon
             showPokemonInfo(pokemonName)
+
         }
+        detailsAdapter = PokemonSecondAdapter(null)
         binding.pokemonList.layoutManager = LinearLayoutManager(this)
         binding.pokemonList.adapter = adapter
         showPokemonList("$baseURL/pokemon?limit=1000&offset=0")
@@ -58,24 +60,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    override fun onBackPressed() {
-        // If the adapter is not empty, clear it and show the initial list of Pokemon
-        if (adapter.itemCount > 0) {
-            adapter.updateList(emptyList())
-            showPokemonList("$baseURL/pokemon?limit=1000&offset=0")
-        } else {
-            // If the adapter is already empty, call the default back button behavior
-            super.onBackPressed()
-        }
-    }
 
     private fun showPokemonInfo(pokemonName: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(APIservice::class.java).getPokemon(" $baseURL/pokemon/$pokemonName")
+            val call = getRetrofit().create(APIservice::class.java)
+                .getPokemon(" $baseURL/pokemon/$pokemonName")
             val pokemon = call.body()
+
             runOnUiThread {
-                if (call.isSuccessful) {
-                    //Show pokemon info
+                if (call.isSuccessful && pokemon != null) {
+
+                    adapter.updateList(emptyList())
+                    detailsAdapter.addPokemon(pokemon)
+                    binding.pokemonList.adapter = detailsAdapter
                     val info = "Name: ${pokemon?.name}\nHeight: ${pokemon?.height}\n"
                     Toast.makeText(this@MainActivity, info, Toast.LENGTH_SHORT).show()
                 } else {
@@ -89,4 +86,5 @@ class MainActivity : AppCompatActivity() {
     private fun showError() {
         Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
     }
+
 }

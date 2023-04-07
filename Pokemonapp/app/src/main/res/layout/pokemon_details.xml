@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    xmlns:tool="http://schemas.android.com/tools"
-    android:layout_margin="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_margin="8dp"
     app:cardBackgroundColor="@color/md_theme_light_secondaryContainer">
 
     <TextView
         android:id="@+id/pokemon_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tool:text="Pikachu"
         android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="8dp"
+        android:textSize="24sp"
+        tool:text="Pikachu" />
+
     <TextView
         android:id="@+id/pokemon_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tool:text="Electric"
-        android:layout_marginTop="24dp"
         android:layout_gravity="center_horizontal"
-        />
-    <ImageView
-        android:id="@+id/pokemon_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="48dp"
-        android:scaleType="centerCrop"
-        android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="38dp"
+        android:textSize="24sp"
+        tool:text="Electric" />
 
 </androidx.cardview.widget.CardView>

@@ -5,7 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.diaz.pokemonapp.databinding.PokemonCardBinding
 
-class PokemonAdapter(private var pokemonList: List<String>, private var listener: (String) -> Unit) :
+class PokemonAdapter(
+    private var pokemonList: List<String>,
+    private var listener: (String) -> Unit
+) :
     RecyclerView.Adapter<PokemonViewHolder>() {
 
 
@@ -25,7 +28,7 @@ class PokemonAdapter(private var pokemonList: List<String>, private var listener
         holder.bind(item)
     }
 
-    fun updateList(newList: List<String>){
+    fun updateList(newList: List<String>) {
         pokemonList = newList
         this.listener = listener
         notifyDataSetChanged()
