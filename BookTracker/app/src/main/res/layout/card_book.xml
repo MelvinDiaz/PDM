@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:backgroundTint="@color/cardview_dark_background"
+    android:layout_margin="16dp"
+    >
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:scrollHorizontally="true"
+        android:scrollbars="horizontal"
+        android:layout_margin="8dp"
+        android:id="@+id/book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        tools:text="Book Title" />
+</ScrollView>
+    <TextView
+        android:layout_margin="8dp"
+        android:id="@+id/book_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        tools:text="Book Author" />
+
+    <TextView
+        android:layout_margin="8dp"
+        android:id="@+id/book_publisher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        tools:text="Book Publisher" />
+    <TextView
+        android:layout_margin="8dp"
+        android:id="@+id/book_isbn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        tools:text="Book ISBN" />
+
+</androidx.cardview.widget.CardView>
