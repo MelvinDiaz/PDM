@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.diaz.pokemon.app-mergeDebugResources-33:/layout/pokeinfo.xml",
+        "source": "com.diaz.pokemon.app-main-36:/layout/pokeinfo.xml"
+    },
+    {
+        "merged": "com.diaz.pokemon.app-mergeDebugResources-33:/layout/card_pokemon.xml",
+        "source": "com.diaz.pokemon.app-main-36:/layout/card_pokemon.xml"
+    },
+    {
+        "merged": "com.diaz.pokemon.app-mergeDebugResources-33:/layout/activity_main.xml",
+        "source": "com.diaz.pokemon.app-main-36:/layout/activity_main.xml"
+    }
+]
