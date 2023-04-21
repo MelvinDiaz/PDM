@@ -31,6 +31,7 @@ class BooksFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_books, container, false)
         binding.recyclerViewBooks.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewBooks.adapter = BooksAdapter(books)
+
         return binding.root
     }
 

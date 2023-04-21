@@ -8,5 +8,4 @@ class BookTrackerApplication: Application() {
     val bookRepository: BookRepository by lazy {
         BookRepository(books)
     }
-
 }

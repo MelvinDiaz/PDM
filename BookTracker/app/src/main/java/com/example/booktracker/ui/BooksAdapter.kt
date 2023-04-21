@@ -10,7 +10,6 @@ class BooksAdapter(private var bookList: List<Book>) : RecyclerView.Adapter<Book
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-
         val binding = CardBookBinding.inflate(inflater, parent, false)
         return BooksViewHolder(binding.root)
     }
@@ -19,12 +18,13 @@ class BooksAdapter(private var bookList: List<Book>) : RecyclerView.Adapter<Book
         return bookList.size
     }
 
-    interface BooksAdapterDataProvider {
-        fun getBookList(): List<Book>
-    }
-
+    //**
+    // onBindViewHolder is like a cursor, it moves through the list of books and binds each book to the view-holder
+    // also, it calls the onBookClicked function to handle the click event
+    //**
     override fun onBindViewHolder(holder: BooksViewHolder, position: Int) {
         val item = bookList[position]
         holder.bind(item)
+        holder.onBookClicked(item)
     }
 }
