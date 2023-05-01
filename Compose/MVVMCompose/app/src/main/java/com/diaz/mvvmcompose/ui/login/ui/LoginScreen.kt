@@ -32,12 +32,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-
 @Composable
-fun LoginScreen(viewModel: LoginViewModel) {
+fun LoginScreen(viewModel: LoginViewModel, navController: NavHostController) {
     Box(
         Modifier
             .fillMaxSize()
@@ -46,13 +46,14 @@ fun LoginScreen(viewModel: LoginViewModel) {
         Login(
             Modifier
                 .align(Alignment.Center)
-                .fillMaxSize(), viewModel
+                .fillMaxSize(), viewModel,
+            navController
         )
     }
 }
 
 @Composable
-fun Login(modifier: Modifier, viewModel: LoginViewModel) {
+fun Login(modifier: Modifier, viewModel: LoginViewModel, navController: NavHostController) {
     val email: String by viewModel.email.observeAsState(initial = "")
     val password: String by viewModel.password.observeAsState(initial = "")
     val loginEnable: Boolean by viewModel.loginEnabled.observeAsState(initial = false)
@@ -67,14 +68,13 @@ fun Login(modifier: Modifier, viewModel: LoginViewModel) {
     } else {
         Column(modifier) {
 
-
             HeaderTitle()
             Spacer(modifier = Modifier.padding(40.dp))
 
-            LoginBox(email, viewModel, password, loginEnable, coroutineScope)
+            LoginBox(email, viewModel, password, loginEnable, coroutineScope, navController)
 
             Spacer(modifier = Modifier.padding(40.dp))
-            RegisterBox()
+            RegisterBox(navController)
         }
     }
 
@@ -99,6 +99,7 @@ fun LoginBox(
     password: String,
     loginEnable: Boolean,
     coroutineScope: CoroutineScope,
+    navController: NavHostController,
 ) {
 
     Card(
@@ -114,14 +115,14 @@ fun LoginBox(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
-
         ) {
+
             AccountHeader()
             EmailTextField(email) { viewModel.onLoginChange(it, password) }
             Spacer(modifier = Modifier.padding(8.dp))
 
             PasswordTextField(password) { viewModel.onLoginChange(email, it) }
-            ForgotPassword()
+            ForgotPassword(navController)
             Spacer(modifier = Modifier.padding(8.dp))
 
             LoginButton(loginEnable) {
@@ -148,11 +149,11 @@ fun AccountHeader() {
 }
 
 @Composable
-fun ForgotPassword() {
+fun ForgotPassword(navController: NavHostController) {
     Text(
         text = "¿Olvidaste tu contraseña?", modifier = Modifier
             .fillMaxWidth()
-            .clickable { }
+            .clickable { navController.navigate("forgot_password") }
             .padding(8.dp),
         textAlign = TextAlign.End,
         color = Color(0xFFDEE0FF)
@@ -231,20 +232,20 @@ fun LoginButton(loginEnable: Boolean, onLoginSelected: () -> Unit) {
 }
 
 @Composable
-fun RegisterBox() {
+fun RegisterBox(navController: NavHostController) {
     Text(
         text = "¿No tienes cuenta?", modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp), textAlign = TextAlign.Center, color = Color.Black
     )
-    RegisterButton()
+    RegisterButton(navController)
 }
 
 @Composable
-fun RegisterButton() {
+fun RegisterButton(navController: NavHostController) {
     Button(
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0B2748)),
-        onClick = { /*TODO*/ },
+        onClick = { navController.navigate("register") },
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 0.dp, bottom = 0.dp, start = 25.dp, end = 25.dp)
