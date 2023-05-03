@@ -12,20 +12,20 @@ import com.diaz.cartrackercompose.data.models.Car
 interface CarDao {
 
     @Insert
-    fun insertCar(car: Car)
+    suspend fun insertCar(car: Car)
 
     @Insert
-    fun insertAllCar(cars: List<Car>)
+    suspend fun insertAllCar(cars: List<Car>)
 
     @Delete
-    fun deleteCar(car: Car)
+    suspend fun deleteCar(car: Car)
 
     @Update
-    fun updateCar(car:Car)
+    suspend fun updateCar(car:Car)
 
     @Query("SELECT * FROM car_table")
-    fun getCars(): List<Car>
+    suspend fun getCars(): List<Car>
 
-    @Query("SELECT * FROM car_table WHERE plate = :plate")
-    fun getCarByPlate(plate: String): LiveData<Car>
+    //@Query("SELECT * FROM car_table WHERE plate = :plate")
+    //suspend fun getCarByPlate(plate: String): LiveData<Car>
 }

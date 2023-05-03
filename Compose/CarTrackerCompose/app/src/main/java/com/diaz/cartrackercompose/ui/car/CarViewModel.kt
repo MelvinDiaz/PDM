@@ -8,7 +8,7 @@ import com.diaz.cartrackercompose.CarTrackerApplication
 import com.diaz.cartrackercompose.repositories.CarRepository
 
 class CarViewModel(private val repository: CarRepository): ViewModel() {
-    fun getCars() = repository.getCars()
+    suspend fun getCars() = repository.getCars()
 
     companion object{
         val Factory = viewModelFactory {

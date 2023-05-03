@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.diaz.mvvmcompose.ui.theme.primaryBlue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -177,7 +178,7 @@ fun EmailTextField(email: String, onTextFieldChanged: (String) -> Unit) {
         placeholder = { Text("example@example.com") },
 
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            textColor = Color(0xFFDEE0FF),
+            textColor = primaryBlue,
             cursorColor = Color(0xFFDEE0FF),
             focusedBorderColor = Color(0xFFDEE0FF),
             unfocusedBorderColor = Color(0xFFDEE0FF),
