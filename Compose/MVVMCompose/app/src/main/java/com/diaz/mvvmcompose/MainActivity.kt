@@ -3,6 +3,7 @@ package com.diaz.mvvmcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -13,12 +14,16 @@ import com.diaz.mvvmcompose.ui.forgot_password.ForgotPasswordScreen
 import com.diaz.mvvmcompose.ui.login.ui.LoginScreen
 import com.diaz.mvvmcompose.ui.login.ui.LoginViewModel
 import com.diaz.mvvmcompose.ui.register.ui.RegisterScreen
+import com.diaz.mvvmcompose.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyAppHost()
+            AppTheme(useDarkTheme = false) {
+                MyAppHost()
+            }
         }
     }
 }
@@ -29,14 +34,18 @@ fun MyAppHost(
     navController: NavHostController = rememberNavController(),
     startDestination: String = "login"
 ) {
-    NavHost(navController = navController, modifier = modifier, startDestination = startDestination){
+    NavHost(
+        navController = navController,
+        modifier = modifier,
+        startDestination = startDestination
+    ) {
         composable("login") {
             LoginScreen(LoginViewModel(), navController)
         }
-        composable("register"){
+        composable("register") {
             RegisterScreen()
         }
-        composable("forgot_password"){
+        composable("forgot_password") {
             ForgotPasswordScreen()
         }
     }
